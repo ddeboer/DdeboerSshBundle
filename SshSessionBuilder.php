@@ -8,8 +8,6 @@ use Ssh\Authentication\HostBasedFile;
 use Ssh\Authentication\Password;
 use Ssh\Authentication\PublicKeyFile;
 
-
-
 /**
  * Build an SSH session
  * 
@@ -38,5 +36,14 @@ class SshSessionBuilder
     public function build()
     {
         return new Session($this->configuration, $this->authentication);
+    }
+
+    /**
+     * Build and get SFTP subsystem
+     */
+    public function buildSftp()
+    {
+        $session = $this->build();
+        return $session->getSftp();
     }
 }
